@@ -1,9 +1,7 @@
 import * as vscode from "vscode";
 import { spawn, exec } from "child_process";
 
-
-
-async function check_login_status(){
+export function checkLoginStatus(){
   const promise = new Promise((resolve, reject) => {
       const child = spawn('p4',['login','-s']);
       child.stdout.on('data', (data) => {
@@ -19,7 +17,7 @@ async function check_login_status(){
 }
 
 export function move(oldPath: string, newPath: string, openAfterMove: boolean = true) {
-  check_login_status().then(() => {
+  return new Promise((resolve, reject) => {
     edit(oldPath).then((success:boolean) => {
       if (success) {
         exec(`p4 move ${oldPath} ${newPath}`, (error, stdout, stderr) => {
@@ -33,14 +31,14 @@ export function move(oldPath: string, newPath: string, openAfterMove: boolean = 
                 vscode.window.showErrorMessage(reason);
               });
             }
+            resolve(true);
           } else {
             vscode.window.showErrorMessage(`Perforce error, ${stderr}`);
+            reject(error);
           }
         });
       }
     });
-  }, (reason) => {
-    vscode.window.showErrorMessage(`Perforce error, ${reason}`);
   });
 }
 

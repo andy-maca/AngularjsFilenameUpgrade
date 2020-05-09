@@ -1,38 +1,41 @@
 {
-	"name": "angularjsfileupgrade",
+	"name": "ng-file-rename",
 	"publisher": "TomTec",
-	"displayName": "TomTecAngularjsFileUpgrade",
+	"displayName": "Rename AngularJs file to Angular",
 	"description": "Upgrade file naming convention from angularjs to angular",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"engines": {
-		"vscode": "^1.44.0"
+		"vscode": "^1.42.0"
 	},
 	"categories": [
 		"Other"
 	],
 	"activationEvents": [
-		"onCommand:ttFileUpgrade.upgradeFileName"
+		"onCommand:ng.file.rename",
+		"onCommand:ng.explorer.file.rename"
 	],
 	"repository": {
 		"type": "git",
-    "url": "https://github.com/andy-maca/AngularjsFilenameUpgrade.git"
+		"url": "https://github.com/andy-maca/AngularjsFilenameUpgrade.git"
 	},
 	"main": "./out/extension.js",
+	"icon": "logo.png",
 	"contributes": {
 		"commands": [
 			{
-				"command": "ttFileUpgrade.upgradeFileName",
-				"title": "TomTec angular - upgrade current active file name"
+				"command": "ng.file.rename",
+				"title": "TomTec: Rename current active file from Angularjs to Angular"
 			},
 			{
-				"command": "ttFileUpgrade.explorer.upgradeFileName",
-				"title": "TomTec angular - upgrade selected files' name"
+				"command": "ng.explorer.file.rename",
+				"title": "TomTec: Rename selected file(s) from Angularjs to Angular"
 			}
 		],
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "ttFileUpgrade.explorer.upgradeFileName"
+					"command": "ng.explorer.file.rename",
+					"when": "resourceExtname == .ts"
 				}
 			]
 		}
@@ -49,7 +52,7 @@
 		"@types/glob": "^7.1.1",
 		"@types/mocha": "^7.0.2",
 		"@types/node": "^13.11.0",
-		"@types/vscode": "^1.44.0",
+		"@types/vscode": "^1.42.0",
 		"@typescript-eslint/eslint-plugin": "^2.30.0",
 		"@typescript-eslint/parser": "^2.30.0",
 		"eslint": "^6.8.0",
