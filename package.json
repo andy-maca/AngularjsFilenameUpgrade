@@ -1,7 +1,7 @@
 {
 	"name": "ng-file-rename",
 	"publisher": "TomTec",
-	"displayName": "Rename AngularJs file to Angular",
+	"displayName": "TomTec AngularJs file renaming",
 	"description": "Upgrade file naming convention from angularjs to angular",
 	"version": "1.0.0",
 	"engines": {

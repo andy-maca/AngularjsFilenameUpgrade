@@ -1,4 +1,4 @@
-# AngularjsFilenameUpgrade
+# Angularjs file renaming
 
 This extension is used to rename files from Angularjs to Angular with the right naming convention.
 
@@ -18,6 +18,14 @@ Currently it support naming component, service, directive, pipe.
 
 * `FooPipe.ts -> foo.pipe.ts`
 `unittest/FooPipe.ts -> foo.pipe.spec.ts`
+
+## Usage
+
+1. In command palette, there will be cmdWith cmd, with `ctrl+shift+p` to open the command palette
+![Rename active file example](image/rename_active_file.gif)
+
+2. In file explorer, run with menu
+![Rename selected file example](image/rename_selected_file.gif)
 
 ## Requirements
 
