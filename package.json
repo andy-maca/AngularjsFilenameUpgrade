@@ -3,7 +3,7 @@
 	"publisher": "TomTec",
 	"displayName": "TomTec AngularJs file renaming",
 	"description": "Upgrade file naming convention from angularjs to angular",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
@@ -63,5 +63,7 @@
 		"vscode-test": "^1.3.0",
 		"webpack": "^4.43.0"
 	},
-	"dependencies": {}
+	"dependencies": {
+		"vsce": "^1.75.0"
+	}
 }
