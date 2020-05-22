@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { move, edit, checkLoginStatus } from './PerforceService';
 import { Ng1FileInformation } from './Ng1FileInformation';
+import { TextDecoder, TextEncoder } from 'util';
 
 
 export function upgradeFile(uri: vscode.Uri) {
@@ -128,7 +129,7 @@ function adjustFilesWhichImportOldFile(oldFileName: string|undefined, newFileNam
  */
 function adjustPathInNewComponent(newComponentUri: vscode.Uri, oldComponentNameWithoutExt: string | undefined, newComponentNameWithoutExt: string | undefined) {
   vscode.workspace.fs.readFile(newComponentUri).then((bytes) => {
-    const oldTxt = bytes.toString();
+    const oldTxt = new TextDecoder().decode(bytes);
     let newText = oldTxt.replace(`${oldComponentNameWithoutExt}.html`,`${newComponentNameWithoutExt}.html`)
       .replace(/(import[^"]+")\.\.\/(.*")/g, "$1../../$2") // "../abc" -> "../../abc"
       .replace(/(import[^"]+")\.\/(.*")/g, "$1../$2"); // "./abc" -> "../abc"
@@ -139,10 +140,7 @@ function adjustPathInNewComponent(newComponentUri: vscode.Uri, oldComponentNameW
 
 
 function writeFile(f: vscode.Uri, newText: string) {
-  const uint=new Uint8Array(newText.length);
-  for(let i=0,j=newText.length;i<j;++i){
-    uint[i]=newText.charCodeAt(i);
-  }
+  const uint = new TextEncoder().encode(newText);
   
   vscode.workspace.fs.writeFile(f, uint).then(() => {
     console.log(`${f.fsPath} updated`);
